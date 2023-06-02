@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: uds-core-k3d
+  description: "UDS Core for K3D"
+  version: "0.0.1"
+  architecture: amd64  
+
+components: 
+  # k3d cluster
+  - name: import-k3d
+    required: true
+    import:
+      name: k3d
+      url: oci://ghcr.io/runyontr/k3d-local:v1.26.0-skeleton
+  - name: import-init
+    required: true
+    import:
+      name: init
+      url: oci://ghcr.io/runyontr/k3d-local:v1.26.0-skeleton
+  - name: import-metallb
+    required: true
+    import:
+      name: metallb
+      url: oci://ghcr.io/runyontr/k3d-local:v1.26.0-skeleton
+
+  # bigbang
+
+  - name: import-load-certs
+    import:
+      name: load-certs
+      url: oci://ghcr.io/runyontr/big-bang-distro-k3d:0.0.2-skeleton
+  - name: import-bigbang
+    import:
+      name: bigbang
+      url: oci://ghcr.io/runyontr/big-bang-distro-k3d:0.0.2-skeleton

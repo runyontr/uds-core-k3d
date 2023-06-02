@@ -1,0 +1,13 @@
+package:
+  create: 
+    max_package_size: "1000000000"
+    set:
+      renovate: datasource=gitlab-tags depName=big-bang/bigbang versioning=semver registryUrl=https://repo1.dso.mil
+      bigbang_version: "2.1.0"
+  deploy:
+    set:
+      domain: leapfrogai.bigbang.dev
+      public_key_file: leapfrogai.bigbang.dev.key
+      public_cert_file: leapfrogai.bigbang.dev.cert
+      host_path: "/var/lib/rancher/k3s/storage/*"
+      appproved_registries: "ghcr.io/defenseunicorns/* | ghcr.io/runyontr/*"
